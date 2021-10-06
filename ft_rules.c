@@ -2,39 +2,94 @@
 
 void	ft_sa(linked_list *list)
 {
-	int value;
-	int data;
+	int	*numb;
 
-	if (list->size <= 1)
-		exit (0);
-	value = ft_del_front(list);
-	data = ft_del_front(list);
-	ft_push_front(list, value);
-	ft_push_front(list, data);
+	if (list->head == NULL || list->head->next == NULL)
+		return ;
+	numb = malloc(sizeof(int) * 6);
+	if (numb == NULL)
+		exit (1);
+	numb[1] = list->head->order;
+	numb[2] = list->head->flag;
+	numb[0] = ft_del_front(list);
+	numb[4] = list->head->order;
+	numb[5] = list->head->flag;
+	numb[3] = ft_del_front(list);
+	ft_push_front(list, numb[0], numb[1], numb[2]);
+	ft_push_front(list, numb[3], numb[4], numb[5]);
+	free(numb);
+	ft_putstr("sa\n");
+}
+
+void	ft_sb(linked_list *list)
+{
+	int	*numb;
+
+	if (list->head == NULL || list->head->next == NULL)
+		return ;
+	numb = malloc(sizeof(int) * 6);
+	if (numb == NULL)
+		exit (1);
+	numb[1] = list->head->order;
+	numb[2] = list->head->flag;
+	numb[0] = ft_del_front(list);
+	numb[4] = list->head->order;
+	numb[5] = list->head->flag;
+	numb[3] = ft_del_front(list);
+	ft_push_front(list, numb[0], numb[1], numb[2]);
+	ft_push_front(list, numb[3], numb[4], numb[5]);
+	free(numb);
+	ft_putstr("sb\n");
 }
 
 void	ft_pa(linked_list *a, linked_list *b)
 {
-	int value;
+	int	*numb;
 
-	if (b->size == 0)
-		exit (0);
-	value = ft_del_front(b);
-	ft_push_front(a, value);
+	if (b->head == NULL)
+		return ;
+	numb = malloc(sizeof(int) * 3);
+	if (numb == NULL)
+		exit (1);
+	numb[1] = b->head->order;
+	numb[2] = b->head->flag;
+	numb[0] = ft_del_front(b);
+	ft_push_front(a, numb[0], numb[1], numb[2]);
+	free(numb);
+	ft_putstr("pa\n");
 }
 
-void	ft_ra(linked_list *list)
+void	ft_pb(linked_list *a, linked_list *b)
 {
-	int value;
+	int	*numb;
 
-	value = ft_del_front(list);
-	ft_push_back(list, value);
+	if (a->head == NULL)
+		return ;
+	numb = malloc(sizeof(int) * 3);
+	if (numb == NULL)
+		exit (1);
+	numb[1] = a->head->order;
+	numb[2] = a->head->flag;
+	numb[0] = ft_del_front(a);
+	ft_push_front(b, numb[0], numb[1], numb[2]);
+	free(numb);
+	ft_putstr("pb\n");
 }
 
-void	ft_rra(linked_list *list)
+void	ft_ra(linked_list *list, int k)
 {
-	int value;
+	int	*numb;
 
-	value = ft_del_back(list);
-	ft_push_front(list, value);
+	if (list->head == NULL || list->head->next == NULL)
+		return ;
+	numb = malloc(sizeof(int) * 3);
+	if (numb == NULL)
+		exit (1);
+	numb[1] = list->head->order;
+	numb[2] = list->head->flag;
+	numb[0] = ft_del_front(list);
+	ft_push_back(list, numb[0], numb[1], numb[2]);
+	free(numb);
+	if (k == 0)
+		ft_putstr("ra\n");
 }
